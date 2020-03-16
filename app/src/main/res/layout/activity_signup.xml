@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignupActivity">
+
+    <!--Sign Up-->
+    <TextView
+        android:id="@+id/txtSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="118dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="550dp"
+
+        android:width="80dp"
+        android:height="40dp"
+        android:fontFamily="@font/roboto_bold"
+
+        android:text="@string/sign_up"
+
+        android:textColor="@color/colorPrimary"
+        android:textSize="22sp" />
+
+
+    <!--First Name-->
+    <EditText
+        android:id="@+id/txtFirstName"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="167dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginBottom="509dp"
+
+        android:background="@drawable/background_txt"
+
+        android:fontFamily="@font/roboto_light"
+        android:textSize="16sp"
+
+        android:hint="@string/first_name"
+        android:inputType="textEmailAddress"
+        android:textAlignment="viewStart" />
+
+    <!--Last Name-->
+    <EditText
+        android:id="@+id/txtLastName"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="233dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="443dp"
+
+        android:background="@drawable/background_txt"
+
+        android:fontFamily="@font/roboto_light"
+        android:textSize="16sp"
+
+        android:hint="@string/last_name"
+        android:inputType="textEmailAddress"
+        android:textAlignment="viewStart" />
+
+    <!-- Email -->
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="303dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="373dp"
+
+        android:background="@drawable/background_txt"
+
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@android:color/black" />
+
+    <!-- Password -->
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="369dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="307dp"
+
+        android:background="@drawable/background_txt"
+
+        android:focusableInTouchMode="true"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@android:color/black" />
+
+    <!--Confirm Password-->
+    <EditText
+        android:id="@+id/txtConfirmPassword"
+        android:layout_width="340dp"
+        android:layout_height="50dp"
+
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="439dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="237dp"
+
+        android:background="@drawable/background_txt"
+
+        android:fontFamily="@font/roboto_light"
+        android:textSize="16sp"
+
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword"
+        android:textAlignment="viewStart" />
+
+    <!-- Register -->
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="37dp"
+        android:layout_marginTop="509dp"
+        android:layout_marginRight="37dp"
+        android:layout_marginBottom="167dp"
+
+        android:background="@drawable/btn_custom"
+        android:fontFamily="@font/roboto_bold"
+
+
+        android:text="@string/create_account"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:textSize="16sp" />
+
+    <!--Back to login-->
+    <TextView
+        android:id="@+id/btnSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginLeft="94dp"
+        android:layout_marginTop="579dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="120dp"
+
+        android:clickable="true"
+        android:focusable="true"
+
+        android:fontFamily="@font/roboto"
+        android:textSize="16sp"
+
+        android:text="@string/login_request"/>
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone" />
+
+</RelativeLayout>

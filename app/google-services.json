@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "49931963061",
+    "firebase_url": "https://simple-chatbot-b8322.firebaseio.com",
+    "project_id": "simple-chatbot-b8322",
+    "storage_bucket": "simple-chatbot-b8322.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49931963061:android:97f7e16b02fe41f3324cfc",
+        "android_client_info": {
+          "package_name": "ca.georgebrown.comp3074.simplechatbot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "49931963061-e93b405oh34hogkmme22tjnot83qq82f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ca.georgebrown.comp3074.simplechatbot",
+            "certificate_hash": "9068d1946fd385bcf9c71770e4d878c000ca58a9"
+          }
+        },
+        {
+          "client_id": "49931963061-eqnj3fhl2b762p9n4buneatt267id937.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ca.georgebrown.comp3074.simplechatbot",
+            "certificate_hash": "2e096da4466b03bbd42791cce67ff791893a43a3"
+          }
+        },
+        {
+          "client_id": "49931963061-1os2jivjfr7mu5ibpvc3634s86jkug1h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnzEFNUw4bAuRtH2JotF_vCnqdJiKPz7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49931963061-1os2jivjfr7mu5ibpvc3634s86jkug1h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FavouriteFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your reserved listings"
+
+        android:fontFamily="@font/roboto_bold"
+
+        android:layout_marginTop="48dp"
+        android:layout_marginLeft="16dp"
+
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="22sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+
+        android:layout_marginTop="90dp"
+
+        android:fontFamily="@font/roboto_light"
+        android:text="You have no reserved listings"
+
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your favourite listings"
+
+        android:fontFamily="@font/roboto_bold"
+
+        android:layout_marginTop="139dp"
+        android:layout_marginLeft="16dp"
+
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="22sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+
+        android:layout_marginTop="186dp"
+
+        android:fontFamily="@font/roboto_light"
+        android:text="You have no favourite listings"
+
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+</FrameLayout>
