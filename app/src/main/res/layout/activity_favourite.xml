@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ca.georgebrown.comp3074.stay.FavouriteActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/your_reserved_listing"
+
+        android:fontFamily="@font/roboto_bold"
+
+        android:layout_marginTop="48dp"
+        android:layout_marginStart="16dp"
+
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="22sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+
+        android:layout_marginTop="90dp"
+
+        android:fontFamily="@font/roboto_light"
+        android:text="@string/no_reserved_listings"
+
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/your_fav_listing"
+
+        android:fontFamily="@font/roboto_bold"
+
+        android:layout_marginTop="139dp"
+        android:layout_marginStart="16dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="22sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+
+        android:layout_marginTop="186dp"
+
+        android:fontFamily="@font/roboto_light"
+        android:text="@string/no_fav_listings"
+
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="13dp"
+        app:menu="@menu/navigation_menu"
+        android:background="?android:attr/windowBackground"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

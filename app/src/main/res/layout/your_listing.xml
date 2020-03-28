@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="386dp"
+    android:layout_height="149dp"
+    android:elevation="13dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="14dp"
+    android:layout_marginBottom="15dp"
+    android:paddingBottom="0dp"
+    android:background="@drawable/home_listing_background">
+
+    <ImageView
+        android:id="@+id/imgYourListing"
+        android:layout_width="169dp"
+        android:layout_height="149dp"
+        android:layout_marginEnd="217dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/country_town_illustration" />
+
+    <TextView
+        android:id="@+id/txtYourListing_Title"
+        android:layout_width="186dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="13dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Rental title"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imgYourListing"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtYourListing_Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="82dp"
+        android:fontFamily="@font/roboto_light"
+        android:text="Price"
+        android:textColor="#000000"
+        android:textSize="15.5sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/imgYourListing"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtYourListing_Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="17dp"
+        android:fontFamily="@font/roboto_light"
+        android:text="Not yet reserved"
+        android:textColor="#707070"
+        android:textSize="15.5sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgYourListing"
+        app:layout_constraintTop_toBottomOf="@+id/txtYourListing_Price" />
+</androidx.constraintlayout.widget.ConstraintLayout>

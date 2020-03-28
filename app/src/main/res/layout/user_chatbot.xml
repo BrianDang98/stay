@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/userReceiverImage"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:src="@drawable/profile_pic"/>
+
+    <TextView
+        android:id="@+id/txtUserChatbot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Username"
+        android:textAlignment="viewStart"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtUserMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_light"
+        android:text="Hello, this is user's message"
+        android:textAlignment="viewStart"
+        android:textColor="#434B56"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/txtMsgTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_light"
+        android:text="few minutes ago"
+        android:textColor="#787C81"
+        android:textSize="15sp" />
+
+</LinearLayout>

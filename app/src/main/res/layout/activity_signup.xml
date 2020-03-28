@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="118dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="550dp"
 
         android:width="80dp"
@@ -22,7 +21,7 @@
         android:fontFamily="@font/roboto_bold"
 
         android:text="@string/sign_up"
-
+        android:textStyle="bold"
         android:textColor="@color/colorPrimary"
         android:textSize="22sp" />
 
@@ -42,7 +41,8 @@
 
         android:fontFamily="@font/roboto_light"
         android:textSize="16sp"
-
+        android:importantForAutofill="no"
+        tools:targetApi="o"
         android:hint="@string/first_name"
         android:inputType="textEmailAddress"
         android:textAlignment="viewStart" />
@@ -53,12 +53,14 @@
         android:layout_width="340dp"
         android:layout_height="50dp"
 
-        android:layout_marginLeft="38dp"
+        android:layout_marginStart="38dp"
         android:layout_marginTop="233dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginEnd="36dp"
         android:layout_marginBottom="443dp"
 
         android:background="@drawable/background_txt"
+        android:importantForAutofill="no"
+        tools:targetApi="o"
 
         android:fontFamily="@font/roboto_light"
         android:textSize="16sp"
@@ -73,12 +75,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_marginLeft="38dp"
+        android:layout_marginStart="38dp"
         android:layout_marginTop="303dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginEnd="36dp"
         android:layout_marginBottom="373dp"
 
         android:background="@drawable/background_txt"
+        android:importantForAutofill="no"
+        tools:targetApi="o"
 
         android:hint="@string/email"
         android:inputType="textEmailAddress"
@@ -93,12 +97,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:layout_marginLeft="38dp"
+        android:layout_marginStart="38dp"
         android:layout_marginTop="369dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginEnd="36dp"
         android:layout_marginBottom="307dp"
 
         android:background="@drawable/background_txt"
+        android:importantForAutofill="no"
+        tools:targetApi="o"
 
         android:focusableInTouchMode="true"
         android:hint="@string/password"
@@ -114,15 +120,17 @@
         android:layout_width="340dp"
         android:layout_height="50dp"
 
-        android:layout_marginLeft="38dp"
+        android:layout_marginStart="38dp"
         android:layout_marginTop="439dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginEnd="36dp"
         android:layout_marginBottom="237dp"
 
         android:background="@drawable/background_txt"
 
         android:fontFamily="@font/roboto_light"
         android:textSize="16sp"
+        android:importantForAutofill="no"
+        tools:targetApi="o"
 
         android:hint="@string/confirm_password"
         android:inputType="textPassword"
@@ -146,6 +154,7 @@
         android:text="@string/create_account"
         android:textAlignment="center"
         android:textColor="@android:color/background_light"
+        android:textStyle="bold"
         android:textSize="16sp" />
 
     <!--Back to login-->
@@ -154,9 +163,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginLeft="94dp"
+        android:layout_marginStart="94dp"
         android:layout_marginTop="579dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="120dp"
 
         android:clickable="true"

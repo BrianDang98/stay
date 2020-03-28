@@ -14,9 +14,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:fillViewport="true">
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:orientation="vertical">
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewPager"
@@ -24,6 +24,7 @@
                 android:layout_height="272dp"
                 android:layout_centerHorizontal="true"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -33,25 +34,26 @@
                 android:id="@+id/sliderDots"
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"
-                android:orientation="horizontal"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="252dp"
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="10dp"
+                android:elevation="13dp"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="@+id/viewPager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/viewPager" />
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/txtDetail_Title"
                 android:layout_width="366dp"
-                android:layout_height="63dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Room For Rent Near George Brown College, Casa Loma Campus"
+                android:text="Your Listing Title"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -61,83 +63,117 @@
                 app:layout_constraintTop_toBottomOf="@+id/viewPager" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/txtDetail_Address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:fontFamily="@font/roboto_light"
-                android:text="5 Somerville Avenue, Toronto, M6M4W1"
+                android:text="Your address"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="15.5sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDetail_Title" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/txtDetail_Landlord"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:fontFamily="@font/roboto_light"
-                android:text="By Chris Bui"
+                android:text="Name of the Landlord"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="15.5sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDetail_Address" />
+
+            <View
+                android:id="@+id/viewLine1"
+                android:layout_width="367dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="22.5dp"
+                android:layout_marginTop="23dp"
+                android:background="@color/line"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtDetail_Landlord" />
 
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/txtDetail_Price"
                 android:layout_width="114.84dp"
                 android:layout_height="42dp"
                 android:layout_marginTop="230dp"
                 android:background="@drawable/price_tag_background"
                 android:fontFamily="@font/roboto_bold"
-                android:text="$550"
+                android:text="Price"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="21sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/viewPager" />
 
             <TextView
-                android:id="@+id/textView5"
-                android:layout_width="365dp"
+                android:id="@+id/txtDescription"
+                android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="180dp"
+                android:layout_marginTop="23dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Description"
+                android:text="@string/description"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewPager" />
+                app:layout_constraintTop_toBottomOf="@+id/viewLine1" />
 
             <TextView
-                android:id="@+id/textView6"
-                android:layout_width="365dp"
+                android:id="@+id/txtDetail_NumBed"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:text="1 Bedroom - Shared Kitchen - Shared Washroom"
+                android:text="Number of Bed Room"
                 android:textColor="@color/colorPrimaryDark"
+                android:textSize="15.5sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
+
+            <TextView
+                android:id="@+id/txtDetail_NumBath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Number of Bath Room"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="15.5sp"
+                app:layout_constraintStart_toEndOf="@+id/txtDetail_NumBed"
+                app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
+
+            <View
+                android:id="@+id/viewLine2"
+                android:layout_width="367dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/line"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtDetail_NumBath" />
 
             <TextView
                 android:id="@+id/txtAboutThisRental"
-                android:layout_width="365dp"
+                android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="282dp"
+                android:layout_marginTop="23dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="About this rental"
+                android:text="@string/about_this_rental"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewPager" />
+                app:layout_constraintTop_toBottomOf="@+id/viewLine2" />
 
             <TextView
-                android:id="@+id/txtDescription"
+                android:id="@+id/txtDetail_Description"
                 android:layout_width="365dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -148,42 +184,50 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtAboutThisRental" />
 
-            <TextView
-                android:id="@+id/txtAmenities"
-                android:layout_width="365dp"
-                android:layout_height="38dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="432dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Amenities"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="20sp"
+            <View
+                android:id="@+id/viewLine3"
+                android:layout_width="367dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="26.6dp"
+                android:background="@color/line"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewPager" />
+                app:layout_constraintTop_toBottomOf="@+id/txtDetail_Description" />
 
             <TextView
                 android:id="@+id/txtSeeOnMap"
-                android:layout_width="365dp"
+                android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="570dp"
+                android:layout_marginTop="26.6dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="See On Map"
+                android:text="@string/see_on_map"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewPager" />
+                app:layout_constraintTop_toBottomOf="@+id/viewLine3" />
 
 
             <fragment
                 android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="367dp"
                 android:layout_height="140dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtSeeOnMap"
-                android:name="com.google.android.gms.maps.SupportMapFragment"/>
+                app:layout_constraintTop_toBottomOf="@+id/txtSeeOnMap" />
+
+            <View
+                android:id="@+id/viewLine4"
+                android:layout_width="367dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="26.6dp"
+                android:background="@color/line"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/map" />
 
 
             <TextView
@@ -191,20 +235,59 @@
                 android:layout_width="365dp"
                 android:layout_height="38dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="52dp"
+                android:layout_marginTop="26.6dp"
+                android:layout_marginBottom="70dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Policy and Rules"
+                android:text="@string/policy_and_rules"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/map" />
+                app:layout_constraintTop_toBottomOf="@id/viewLine4" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:elevation="20dp"
+        android:background="?android:attr/windowBackground"
+        android:layout_alignParentBottom="true">
 
+        <Button
+            android:id="@+id/btnReserve"
+            android:layout_width="191dp"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_custom2"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="9dp"
+            android:text="Reserve"
+            android:textColor="#218E84"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/btnContact"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/btnContact"
+            android:layout_width="191dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/btn_custom"
+            android:fontFamily="@font/roboto"
+            android:text="Contact"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/btnReserve"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </RelativeLayout>
