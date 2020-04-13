@@ -6,6 +6,8 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +30,9 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
 
     private ImageView listingImage;
     private TextView detail_title, detail_price,detail_address, detail_landlord, detail_description, detail_numbed, detail_numbath;
-    private String ListingKey;
+    private Button btnReserve, btnContact;
+    private String ListingKey, senderUserId, receiverUserId, CURRENT_STATE;
+    private FirebaseAuth mAuth;
 
     /* Slider dots */
     ViewPager viewPager;
@@ -52,6 +57,14 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
         detail_description = (TextView) findViewById(R.id.txtDetail_Description);
         detail_numbed = (TextView) findViewById(R.id.txtDetail_NumBed);
         detail_numbath = (TextView) findViewById(R.id.txtDetail_NumBath);
+        btnContact = (Button) findViewById(R.id.btnContact);
+        btnReserve = (Button) findViewById(R.id.btnReserve);
+
+        mAuth = FirebaseAuth.getInstance();
+        CURRENT_STATE = "not_yet_reserved";
+        //receiverUserId = getIntent().getExtras().get("visit_user_id").toString();
+        senderUserId = mAuth.getCurrentUser().getUid();
+
 
         ListingKey = getIntent().getExtras().get("ListingKey").toString();
         DetailListingRef = FirebaseDatabase.getInstance().getReference().child("Listing").child(ListingKey);
@@ -66,6 +79,7 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
                 String description = dataSnapshot.child("description").getValue().toString();
                 String numbed = dataSnapshot.child("numBed").getValue().toString();
                 String numbath = dataSnapshot.child("numBath").getValue().toString();
+
 
                 int intNumBed = Integer.parseInt(numbed);
                 int intNumBath = Integer.parseInt(numbath);
@@ -95,6 +109,20 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
 
             }
         });
+
+    /*
+    btnContact.setVisibility(View.INVISIBLE);
+    btnReserve.setVisibility(View.INVISIBLE);
+    btnContact.setEnabled(false);
+    btnReserve.setEnabled(false);
+
+    if(!senderUserId.equals(receiverUserId)){
+
+    }
+    else{
+        btnReserve.setVisibility(View.INVISIBLE);
+    }
+     */
 
         /* For slider dots*/
         viewPager = findViewById(R.id.viewPager);
@@ -148,7 +176,9 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
         mapFragment.getMapAsync(this);
 
         /* End of Map */
+
     }
+
 
 
     @Override

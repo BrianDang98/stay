@@ -34,7 +34,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            username = itemView.findViewById(R.id.txtUserChatbot);
+            username = itemView.findViewById(R.id.txtUserChatName);
             profile_image = itemView.findViewById(R.id.userReceiverImage);
         }
     }
@@ -54,7 +54,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
         }
         else{
-            Glide.with(mContext).load(user.getImageUrl()).into(holder.profile_image);
+            Glide.with(mContext).load(user.getImageUrl()).centerCrop().into(holder.profile_image);
         }
     }
 

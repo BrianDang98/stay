@@ -38,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
     Boolean likeChecker;
     String greeting = null;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,10 +149,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void DisplayAllListings() {
+
         FirebaseRecyclerOptions<Listing> options =
                 new FirebaseRecyclerOptions.Builder<Listing>()
                         .setQuery(listingRef, Listing.class)
                         .build();
+
 
         FirebaseRecyclerAdapter<Listing, ListingViewHolder> adapter =
                 new FirebaseRecyclerAdapter<Listing, ListingViewHolder>(options) {
@@ -163,9 +165,9 @@ public class MainActivity extends AppCompatActivity {
                         holder.listingTitle.setText(model.getTitle());
                         holder.listingPrice.setText("$"+model.getPrice()+"/month");
                         Glide.with(MainActivity.this).load(model.getListingImage()).centerCrop().into(holder.listingImageView);
-                        
-                        holder.setLikeButtonStatus(ListingKey);
 
+
+                        holder.setLikeButtonStatus(ListingKey);
                         holder.listingTitle.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -187,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
                                             if(dataSnapshot.child(ListingKey).hasChild(currentUserId)){
                                                 likeRef.child(ListingKey).child(currentUserId).removeValue();
                                                 likeChecker = false;
+                                                // FirebaseDatabase.getInstance().getReference().child("Like").child(currentUserId).child()
                                             }
                                             else{
                                                 likeRef.child(ListingKey).child(currentUserId).setValue(true);
@@ -261,6 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
     }
 
     private void UserMenuSelector(MenuItem item) {
@@ -275,8 +279,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.chat_icon:
-                Intent chatbot = new Intent(getApplicationContext(), ChatListActivity.class);
-                startActivity(chatbot);
+                Intent chatlist = new Intent(getApplicationContext(), ChatListActivity.class);
+                startActivity(chatlist);
                 overridePendingTransition(0,0);
                 break;
 

@@ -9,21 +9,18 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,30 +31,27 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-
-import static ca.georgebrown.comp3074.stay.SetupActivity.Gallery_Pick;
-
 public class AddListingActivity extends AppCompatActivity {
 
     private Toolbar mToolBar;
     private EditText listingTitle, listingPrice, listingDescription, listingRentalAddress, listingNumOfBedroom, listingNumOfBathroom;
-    private ImageButton pictureToUpload;
+
+    private ImageButton imgExterior, imgBedroom, imgKitchen, imgWashroom;
     private Button btnUploadListing;
     private static final int Gallery_Pick = 1;
     private Uri ImageUri;
-    StorageTask uploadTask;
+    StorageTask uploadTask1;
 
     private String Title, Price, Description, Address, NumOfBedroom, NumOfBathroom;
 
     private StorageReference storageReference;
     private DatabaseReference userReference, listingReference;
     private FirebaseAuth mAuth;
-    private String saveCurrentDate, saveCurrentTime, postRandomName, current_user_id, listingImageUrl;
+    private String saveCurrentDate, saveCurrentTime, postRandomName, current_user_id, listingImageUrl1, listingImageUrl2, listingImageUrl3, listingImageUrl4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +69,9 @@ public class AddListingActivity extends AppCompatActivity {
         listingRentalAddress = (EditText) findViewById(R.id.txtListingRentalAddress);
         listingNumOfBedroom = (EditText) findViewById(R.id.txtListingNumberBedroom);
         listingNumOfBathroom = (EditText) findViewById(R.id.txtListingNumberBathroom);
-        pictureToUpload = (ImageButton) findViewById(R.id.imageButtonPicture);
+        imgExterior = (ImageButton) findViewById(R.id.imageExteriorImage);
         btnUploadListing = (Button) findViewById(R.id.btnUpload);
+
 
         mToolBar = (Toolbar) findViewById(R.id.add_listings_toolbar);
         setSupportActionBar(mToolBar);
@@ -85,7 +80,7 @@ public class AddListingActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Add Listing");
 
 
-        pictureToUpload.setOnClickListener(new View.OnClickListener() {
+        imgExterior.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OpenGallery();
@@ -114,7 +109,6 @@ public class AddListingActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == Gallery_Pick && resultCode == RESULT_OK && data != null && data.getData() != null){
             ImageUri = data.getData();
-            pictureToUpload.setImageURI(ImageUri);
         }
     }
 
@@ -158,25 +152,26 @@ public class AddListingActivity extends AppCompatActivity {
         postRandomName = saveCurrentDate + saveCurrentTime;
 
         if(ImageUri != null){
-            final StorageReference filePath = storageReference.child(postRandomName + "."+getFileExtension(ImageUri));
+            final StorageReference filePath1 = storageReference.child(postRandomName + "."+getFileExtension(ImageUri));
 
-            uploadTask = filePath.putFile(ImageUri);
-            uploadTask.continueWithTask(new Continuation() {
+
+            uploadTask1 = filePath1.putFile(ImageUri);
+            uploadTask1.continueWithTask(new Continuation() {
                 @Override
                 public Object then(@NonNull Task task) throws Exception {
                     if(!task.isSuccessful()){
                         throw task.getException();
                     }
                     else{
-                        return filePath.getDownloadUrl();
+                        return filePath1.getDownloadUrl();
                     }
                 }
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
                     if(task.isSuccessful()){
-                        Uri downloadUri = task.getResult();
-                        listingImageUrl = downloadUri.toString();
+                        Uri downloadUri1 = task.getResult();
+                        listingImageUrl1 = downloadUri1.toString();
 
                         listingReference = FirebaseDatabase.getInstance().getReference().child("Listing");
                         SavingListingInformationToDatabase();
@@ -192,6 +187,7 @@ public class AddListingActivity extends AppCompatActivity {
 
     // Save listing info to database
     private void SavingListingInformationToDatabase() {
+
         userReference.child(current_user_id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -208,7 +204,7 @@ public class AddListingActivity extends AppCompatActivity {
                         listingMap.put("address", Address);
                         listingMap.put("numBed", NumOfBedroom);
                         listingMap.put("numBath", NumOfBathroom);
-                        listingMap.put("listingImage", listingImageUrl);
+                        listingMap.put("listingImage", listingImageUrl1);
                         listingMap.put("userFirstName", userFirstname);
 
                     listingReference.child(current_user_id + postRandomName).updateChildren(listingMap)

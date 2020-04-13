@@ -11,7 +11,7 @@
         android:src="@drawable/profile_pic"/>
 
     <TextView
-        android:id="@+id/txtUserChatbot"
+        android:id="@+id/txtUserChatName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto_bold"

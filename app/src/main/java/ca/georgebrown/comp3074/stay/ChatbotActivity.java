@@ -21,6 +21,9 @@ public class ChatbotActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatbot);
 
+        messageReceiverId = getIntent().getExtras().get("").toString();
+        messageReceiverName = getIntent().getExtras().get("").toString();
+
         InitializeFields();
         
     }

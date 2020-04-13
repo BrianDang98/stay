@@ -40,6 +40,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="21.29dp"
+
+                    android:clickable="true"
+                    android:focusable="true"
+
                     android:fontFamily="@font/roboto"
                     android:text="First name"
                     android:textColor="#000000"
@@ -47,14 +51,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtEditPersonalInfo" />
 
-                <EditText
+                <TextView
                     android:id="@+id/txtYourFirstName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="31dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/roboto"
-                    android:text="txtYourFirstName"
+                    android:text="Your first name"
                     android:textColor="#000000"
                     android:textSize="22sp"
                     android:importantForAutofill="no"
@@ -76,14 +80,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtYourFirstName" />
 
-                <EditText
+                <TextView
                     android:id="@+id/txtYourLastName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="31dp"
                     android:layout_marginTop="10dp"
+
+                    android:clickable="true"
+                    android:focusable="true"
+
                     android:fontFamily="@font/roboto"
-                    android:text="txtYourLastName"
+                    android:text="Your last name"
                     android:textColor="#000000"
                     android:textSize="22sp"
                     android:importantForAutofill="no"
@@ -105,13 +113,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtYourLastName" />
 
-                <EditText
+                <TextView
                     android:id="@+id/txtYourGender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="31dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/roboto"
+
+                    android:clickable="true"
+                    android:focusable="true"
+
                     android:text="your gender"
                     android:textColor="#000000"
                     android:textSize="22sp"
@@ -134,13 +146,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtYourGender" />
 
-                <EditText
+                <TextView
                     android:id="@+id/txtYourEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="21.29dp"
                     android:fontFamily="@font/roboto"
+
+                    android:clickable="true"
+                    android:focusable="true"
+
                     android:text="thienphuoc199829@gmail.com"
                     android:textColor="#000000"
                     android:textSize="16sp"
@@ -163,13 +179,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtYourEmail" />
 
-                <EditText
+                <TextView
                     android:id="@+id/txtYourPhone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="31dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/roboto"
+
+                    android:clickable="true"
+                    android:focusable="true"
+
                     android:text="+1 (647) 569-4516"
                     android:textColor="#000000"
                     android:textSize="16sp"

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,27 +28,32 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import java.util.HashMap;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private TextView ProfileUsername;
+    private TextView ProfileUsername, btnLogOut;
     private CircleImageView profileImage;
     private Button btnToEditProfile, btnToListYourSpace, btnToManageYourSpace;
     private BottomNavigationView bottomNavigationView;
 
-    private DatabaseReference ref, listingRef;
+    private DatabaseReference ref;
     private StorageReference UserProfileImageRef;
 
     private FirebaseAuth auth;
-    String currentUserId;
+    String currentUserId, profileImageUrl;
     private Uri ImageUri;
     final static int Gallery_Pick = 1;
+    StorageTask uploadTask;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +64,9 @@ public class ProfileActivity extends AppCompatActivity {
         profileImage = (CircleImageView) findViewById(R.id.profileImage);
         UserProfileImageRef = FirebaseStorage.getInstance().getReference().child("profileImage");
 
+        btnLogOut = (TextView) findViewById(R.id.btnLogOut);
         btnToListYourSpace = (Button) findViewById(R.id.btnToListYourSpace);
+
         btnToListYourSpace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,10 +99,7 @@ public class ProfileActivity extends AppCompatActivity {
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent galleryIntent = new Intent();
-                galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
-                galleryIntent.setType("image/");
-                startActivityForResult(galleryIntent, Gallery_Pick);
+                OpenGallery();
             }
         });
 
@@ -114,7 +119,9 @@ public class ProfileActivity extends AppCompatActivity {
 
                     if (dataSnapshot.hasChild("profileImage")) {
                         String image = dataSnapshot.child("profileImage").getValue().toString();
-                        Glide.with(ProfileActivity.this).load(image).into(profileImage);
+                        //Glide.with(ProfileActivity.this).load(image).into(profileImage);
+                        Glide.with(ProfileActivity.this).load(image).centerCrop().into(profileImage);
+
                     } else {
                         Toast.makeText(ProfileActivity.this, "Profile name do not exists...", Toast.LENGTH_SHORT).show();
                     }
@@ -137,6 +144,30 @@ public class ProfileActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                auth.signOut();
+                SendUserToWelcomeActivity();
+            }
+        });
+
+    }
+
+    private void SendUserToWelcomeActivity() {
+        Intent start = new Intent(getApplicationContext(), StartActivity.class);
+        startActivity(start);
+        finish();
+
+    }
+
+    // Open gallery
+    private void OpenGallery() {
+        Intent galleryIntent = new Intent();
+        galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
+        galleryIntent.setType("image/");
+        startActivityForResult(galleryIntent, Gallery_Pick);
     }
 
     // Get image file extension
@@ -146,6 +177,7 @@ public class ProfileActivity extends AppCompatActivity {
         return mime.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
+    // Pick an image and save image to storage
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -162,7 +194,32 @@ public class ProfileActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 final StorageReference filePath = UserProfileImageRef.child(currentUserId + "."+getFileExtension(ImageUri));
 
+                uploadTask = filePath.putFile(ImageUri);
+                uploadTask.continueWithTask(new Continuation() {
+                    @Override
+                    public Object then(@NonNull Task task) throws Exception {
+                        if(!task.isSuccessful()){
+                            throw task.getException();
+                        }
+                        else{
+                            return filePath.getDownloadUrl();
+                        }                    }
+                }).addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        if(task.isSuccessful()){
+                            Uri downloadUri = (Uri) task.getResult();
+                            profileImageUrl = downloadUri.toString();
 
+                            ref = FirebaseDatabase.getInstance().getReference().child("Tenant");
+                            SavingProfileImageToDatabase();
+                        }
+                        else {
+                            Toast.makeText(ProfileActivity.this, "Error Image cannot be cropped", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                /*
                 filePath.putFile(ImageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
@@ -171,7 +228,6 @@ public class ProfileActivity extends AppCompatActivity {
                             startActivity(selfIntent);
                             Toast.makeText(ProfileActivity.this, "Profile Image stored to Firebase storage successfully", Toast.LENGTH_SHORT).show();
 
-                            // final String downloadUrl = task.getResult().getStorage().getDownloadUrl().toString();
                             filePath.getDownloadUrl();
 
                             ref.child("profileImage").setValue(filePath.getDownloadUrl())
@@ -186,14 +242,47 @@ public class ProfileActivity extends AppCompatActivity {
                                             }
                                         }
                                     });
-                        } else {
+                        }
+                        else {
                             Toast.makeText(ProfileActivity.this, "Error Image cannot be cropped", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
 
+                 */
             }
         }
+    }
+
+    private void SavingProfileImageToDatabase() {
+        ref.child(currentUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    HashMap userMap = new HashMap();
+                        userMap.put("listingImage", profileImageUrl);
+
+                    ref.child(currentUserId).updateChildren(userMap)
+                            .addOnCompleteListener(new OnCompleteListener() {
+                                @Override
+                                public void onComplete(@NonNull Task task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(ProfileActivity.this, "Profile Image store to Firebase database successfully", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        String message = task.getException().getMessage();
+                                        Toast.makeText(ProfileActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void UserMenuSelector(MenuItem item) {

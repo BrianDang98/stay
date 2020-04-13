@@ -6,64 +6,103 @@
     android:layout_height="match_parent"
     tools:context="ca.georgebrown.comp3074.stay.FavouriteActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/your_reserved_listing"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutReserve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        android:fontFamily="@font/roboto_bold"
+        <TextView
+            android:id="@+id/txtYourReservedListings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:layout_marginTop="48dp"
-        android:layout_marginStart="16dp"
+            android:layout_marginStart="14dp"
 
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:textSize="22sp" />
+            android:layout_marginTop="48dp"
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/your_reserved_listing"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        android:layout_marginTop="90dp"
+        <TextView
+            android:id="@+id/txtNoReserved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:fontFamily="@font/roboto_light"
-        android:text="@string/no_reserved_listings"
+            android:layout_marginStart="18dp"
 
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="15sp" />
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto_light"
 
+            android:text="@string/no_reserved_listings"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtYourReservedListings" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/your_fav_listing"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layoutReserve">
 
-        android:fontFamily="@font/roboto_bold"
+        <TextView
+            android:id="@+id/txtFavYourListings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
 
-        android:layout_marginTop="139dp"
-        android:layout_marginStart="16dp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="22sp" />
+            android:layout_marginTop="24dp"
 
+            android:fontFamily="@font/roboto_bold"
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
+            android:text="@string/your_fav_listing"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        android:layout_marginTop="186dp"
+        <TextView
+            android:id="@+id/txtReserved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:fontFamily="@font/roboto_light"
-        android:text="@string/no_fav_listings"
+            android:layout_marginStart="18dp"
 
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="15sp" />
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/roboto_light"
+
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtYourListings" />
+
+        <FrameLayout
+            android:id="@+id/main_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtYourListings">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/all_fav_listings"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

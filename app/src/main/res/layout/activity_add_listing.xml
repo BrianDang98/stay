@@ -171,20 +171,32 @@
                 android:textSize="19sp"
                 android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/imageButtonPicture"
-                android:layout_width="362dp"
+
+            <TextView
+                android:id="@+id/txtUploadAnyImage"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="20dp"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+                android:fontFamily="@font/roboto"
+                android:text="Exterior"
+                android:textColor="#000000"
+                android:textSize="19sp" />
+
+            <ImageButton
+                android:id="@+id/imageExteriorImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_launcher_foreground"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="26dp" />
+
 
             <Button
                 android:id="@+id/btnUpload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-
                 android:background="@drawable/btn_custom"
                 android:fontFamily="@font/roboto_bold"
                 android:text="Upload"

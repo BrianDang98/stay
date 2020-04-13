@@ -31,7 +31,7 @@ public class ChatListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_list);
 
-        recyclerView = (RecyclerView) findViewById(R.id.chat_list_recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_chatList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
@@ -47,7 +47,7 @@ public class ChatListActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
-                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Tenant user = snapshot.getValue(Tenant.class);
 
                     assert user != null;

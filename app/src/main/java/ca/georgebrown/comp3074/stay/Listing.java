@@ -1,7 +1,7 @@
 package ca.georgebrown.comp3074.stay;
 
 public class Listing {
-    public String uid, time, date, title, address, description, price, numBed, numBath, userName, listingImage, listingStatus;
+    public String uid, time, date, title, address, description, price, numBed, numBath, userName, listingImage, listingImageDescription, listingStatus;
 
     public Listing(){
 
@@ -20,7 +20,7 @@ public class Listing {
         listingStatus = status;
     }
 
-    public Listing(String uid, String time, String date, String title, String address, String description, String price, String numBed, String numBath, String userName, String listingImage, String listingStatus) {
+    public Listing(String uid, String time, String date, String title, String address, String description, String price, String numBed, String numBath, String userName, String listingImage, String listingImageDescription, String listingStatus) {
         this.uid = uid;
         this.time = time;
         this.date = date;
@@ -33,6 +33,7 @@ public class Listing {
         this.userName = userName;
         this.listingImage = listingImage;
         this.listingStatus = listingStatus;
+        this.listingImageDescription = listingImageDescription;
     }
 
     public String getUid() {
@@ -121,6 +122,14 @@ public class Listing {
 
     public void setListingImage(String listingImage) {
         this.listingImage = listingImage;
+    }
+
+    public String getListingImageDescription() {
+        return listingImageDescription;
+    }
+
+    public void setListingImageDescription(String listingImageDescription) {
+        this.listingImageDescription = listingImageDescription;
     }
 
     public String getListingStatus() {

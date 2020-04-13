@@ -2,6 +2,7 @@ package ca.georgebrown.comp3074.stay;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +10,14 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
 public class FavouriteActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
 
+    RecyclerView yourFavList;
+    private List<String> myFav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

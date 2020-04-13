@@ -1,8 +1,11 @@
 package ca.georgebrown.comp3074.stay;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -25,8 +28,11 @@ import java.util.HashMap;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    private EditText editFirstName, editLastName, editEmail, editGender, editPhone;
+    private TextView editFirstName, editLastName, editEmail, editGender, editPhone;
     private Button btnEditProfile;
+    AlertDialog dialog;
+    private EditText editText;
+
     private String currentUserId;
     private DatabaseReference editProfileRef;
     private FirebaseAuth mAuth;
@@ -40,12 +46,30 @@ public class EditProfileActivity extends AppCompatActivity {
         currentUserId = mAuth.getCurrentUser().getUid();
         editProfileRef = FirebaseDatabase.getInstance().getReference().child("Tenant");
 
-        editFirstName = (EditText) findViewById(R.id.txtYourFirstName);
-        editLastName = (EditText) findViewById(R.id.txtYourLastName);
-        editEmail = (EditText) findViewById(R.id.txtYourEmail);
-        editGender = (EditText) findViewById(R.id.txtYourGender);
-        editPhone = (EditText) findViewById(R.id.txtYourPhone);
+        editFirstName = (TextView) findViewById(R.id.txtYourFirstName);
+        editLastName = (TextView) findViewById(R.id.txtYourLastName);
+        editEmail = (TextView) findViewById(R.id.txtYourEmail);
+        editGender = (TextView) findViewById(R.id.txtYourGender);
+        editPhone = (TextView) findViewById(R.id.txtYourPhone);
+        dialog = new AlertDialog.Builder(this).create();
+        editText = new EditText(this);
+        dialog.setTitle("Edit:");
+        dialog.setView(editText);
 
+        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "SAVE TEXT", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                editFirstName.setText(editText.getText());
+            }
+        });
+
+        editFirstName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editText.setText(editFirstName.getText());
+                dialog.show();
+            }
+        });
 
         btnEditProfile = (Button) findViewById(R.id.btnEditYourProfile);
 
@@ -143,5 +167,31 @@ public class EditProfileActivity extends AppCompatActivity {
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
         finish();
+    }
+
+    private void EditSelectedField(String yourFirstName) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Edit: ");
+
+        final EditText inputField = new EditText(this);
+        inputField.setText(yourFirstName);
+        builder.setView(inputField);
+        builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                editProfileRef.child("firstName").setValue(inputField.getText().toString());
+                Toast.makeText(EditProfileActivity.this, "Your first name has been updated", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        Dialog dialog = builder.create();
+        dialog.show();
     }
 }
