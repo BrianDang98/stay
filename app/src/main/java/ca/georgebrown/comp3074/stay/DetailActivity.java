@@ -57,8 +57,8 @@ public class DetailActivity extends AppCompatActivity implements OnMapReadyCallb
         detail_description = (TextView) findViewById(R.id.txtDetail_Description);
         detail_numbed = (TextView) findViewById(R.id.txtDetail_NumBed);
         detail_numbath = (TextView) findViewById(R.id.txtDetail_NumBath);
-        btnContact = (Button) findViewById(R.id.btnContact);
-        btnReserve = (Button) findViewById(R.id.btnReserve);
+        /*btnContact = (Button) findViewById(R.id.btnContact);
+        btnReserve = (Button) findViewById(R.id.btnReserve);*/
 
         mAuth = FirebaseAuth.getInstance();
         CURRENT_STATE = "not_yet_reserved";

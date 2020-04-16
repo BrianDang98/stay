@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +42,14 @@ public class YourListingAdapter extends RecyclerView.Adapter<YourListingAdapter.
         holder.YourListingTitle.setText(listing.getTitle());
         holder.YourListingPrice.setText("$"+listing.getPrice()+"/month");
         Glide.with(context).load(listing.getListingImage()).centerCrop().into(holder.YourListingImageView);
+        /*holder.btnYourListing_Delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                YourListingRef.removeValue();
+                sendUserToMainActivity();
+                Toast.makeText(YourListingAdapter.this, "Your Listing has been deleted", Toast.LENGTH_SHORT).show();
+            }
+        });*/
     }
 
     @Override
@@ -50,7 +59,7 @@ public class YourListingAdapter extends RecyclerView.Adapter<YourListingAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView YourListingTitle, YourListingPrice, YourListingStatus;
+        TextView YourListingTitle, YourListingPrice, YourListingStatus, btnYourListing_Delete, btnYourListing_Edit;
         ImageView YourListingImageView;
 
         public ViewHolder(@NonNull View ItemView) {
@@ -59,6 +68,9 @@ public class YourListingAdapter extends RecyclerView.Adapter<YourListingAdapter.
             YourListingPrice = ItemView.findViewById(R.id.txtYourListing_Price);
             YourListingStatus = ItemView.findViewById(R.id.txtYourListing_Status);
             YourListingImageView = ItemView.findViewById(R.id.imgYourListing);
+            /*btnYourListing_Delete = ItemView.findViewById(R.id.txtYourListing_Delete);
+            btnYourListing_Edit = ItemView.findViewById(R.id.txtYourListing_Edit);*/
+
         }
     }
 }

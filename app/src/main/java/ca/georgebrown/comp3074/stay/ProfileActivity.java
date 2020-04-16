@@ -290,17 +290,6 @@ public class ProfileActivity extends AppCompatActivity {
             case R.id.profile_icon:
                 break;
 
-            case R.id.fav_icon:
-                Intent favourite = new Intent(getApplicationContext(), FavouriteActivity.class);
-                startActivity(favourite);
-                overridePendingTransition(0,0);
-                break;
-
-            case R.id.chat_icon:
-                Intent chatbot = new Intent(getApplicationContext(), ChatListActivity.class);
-                startActivity(chatbot);
-                overridePendingTransition(0,0);
-                break;
 
             case R.id.home_icon:
                 Intent home = new Intent(getApplicationContext(), MainActivity.class);

@@ -38,13 +38,11 @@ import ca.georgebrown.comp3074.stay.Adapter.YourListingAdapter;
 public class YourListingActivity extends AppCompatActivity {
 
     // private ImageView imgYourListing;
-    private TextView txtYourListingTitle, txtYourListingPrice, getTxtYourListingStatus;
+    private TextView txtYourListingTitle, txtYourListingPrice, getTxtYourListingStatus, btnDeleteYourListing, btnEditYourListing;
     private RecyclerView yourList;
     YourListingAdapter yourListingAdapter;
     List<Listing> listing;
     private ImageView imgYourListing;
-    private Button btnDeleteYourListing, btnEditYourListing;
-
     private DatabaseReference YourListingRef;
     private FirebaseAuth mAuth;
 
@@ -64,6 +62,9 @@ public class YourListingActivity extends AppCompatActivity {
         listing = new ArrayList<>();
         yourListingAdapter = new YourListingAdapter(getApplicationContext(), listing);
         yourList.setAdapter(yourListingAdapter);
+        /*btnEditYourListing = (TextView) findViewById(R.id.txtYourListing_Edit);
+        btnDeleteYourListing = (TextView) findViewById(R.id.txtYourListing_Delete);*/
+
 
         mAuth = FirebaseAuth.getInstance();
         currentUserId = mAuth.getCurrentUser().getUid();
@@ -75,53 +76,11 @@ public class YourListingActivity extends AppCompatActivity {
 
         yourList();
 
-        /*btnDeleteYourListing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DeleteSelectedListing();
-            }
-        });
-
-        btnEditYourListing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditSelectedListing(YourListingPrice);
-            }
-        });*/
     }
 
     private void EditSelectedListing(String price) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Edit your listing: ");
-
-        final EditText inputField = new EditText(this);
-        inputField.setText(price);
-        builder.setView(inputField);
-        builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                YourListingRef.child("price").setValue(inputField.getText().toString());
-                Toast.makeText(YourListingActivity.this, "Your listing has been updated", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        Dialog dialog = builder.create();
-        dialog.show();
-        dialog.getWindow().setBackgroundDrawableResource(android.R.color.holo_blue_dark);
     }
 
-    private void DeleteSelectedListing() {
-        YourListingRef.removeValue();
-        sendUserToMainActivity();
-        Toast.makeText(this, "Your Listing has been deleted", Toast.LENGTH_SHORT).show();
-    }
 
     private void sendUserToMainActivity() {
         Intent mainIntent = new Intent(YourListingActivity.this, MainActivity.class);
@@ -139,6 +98,22 @@ public class YourListingActivity extends AppCompatActivity {
                     Listing yourlisting = snapshot.getValue(Listing.class);
                     if(yourlisting.getUid().equals(currentUserId)){
                         listing.add(yourlisting);
+
+                        /*btnDeleteYourListing.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                /*
+                                YourListingRef.removeValue();
+                                sendUserToMainActivity();
+                                Toast.makeText(YourListingActivity.this, "Your Listing has been deleted", Toast.LENGTH_SHORT).show();                 }
+                        });
+
+                        btnEditYourListing.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // EditSelectedListing(YourListingPrice);
+                            }
+                        });*/
                     }
                 }
                 Collections.reverse(listing);
