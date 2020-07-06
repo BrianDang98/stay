@@ -9,8 +9,8 @@ APK : https://drive.google.com/open?id=1FCPhpA0OMFDYwNKBLlsA-O4dptb0KWYp
 
 Team members:
 
-Thien Phuoc Dang - Team Lead, Designer
+Quang Minh Tran - Team Lead
 
-Quang Minh Tran - Backend Developer
+Thien Phuoc Dang - Designer, Frontend and Backend Developer
 
 Chi Anh Bui - Backend Developer, Consultant
