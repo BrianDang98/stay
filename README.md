@@ -1,5 +1,5 @@
-CAPSTONE PROJECT 
-T25 - Stay Housing Application
+# Stay Housing Application
+## Capstone Project
 
 Wireframes Mockup: https://drive.google.com/open?id=1v6ymjOC1l-boPhqhgofv-TNN9RjF-stN
 
